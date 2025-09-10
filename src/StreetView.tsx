@@ -1,35 +1,42 @@
-import { useEffect } from "react";
+import { APIProvider, Map, useMap } from "@vis.gl/react-google-maps";
+import { useEffect, useRef, useState } from "react";
 
-declare global {
-  interface Window {
-    initialize: () => void;
-  }
+type StreetViewProps = {
+  lat: number;
+  lng: number;
+};
+
+function StreetViewInner({ lat, lng }: StreetViewProps) {
+  const map = useMap();
+  const panoRef = useRef<HTMLDivElement>(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    if (!map || !panoRef.current || loaded) return;
+
+    try {
+      const panorama = new google.maps.StreetViewPanorama(panoRef.current, {
+        position: { lat, lng },
+        pov: { heading: 34, pitch: 10 },
+        zoom: 1,
+      });
+
+      map.setStreetView(panorama);
+      setLoaded(true);
+    } catch (e) {
+      console.error("StreetViewPanorama failed to load:", e);
+    }
+  }, [map, lat, lng, loaded]);
+
+  return <div ref={panoRef} className="h-screen w-full" />;
 }
 
-export default function StreetView() {
-  useEffect(() => {
-    // Dynamically load Google Maps script
-    const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${
-      import.meta.env.VITE_GOOGLE_MAPS_API_KEY
-    }&callback=initialize`;
-    script.async = true;
-    document.body.appendChild(script);
-
-    // Called when Google Maps JS loads
-    window.initialize = () => {
-      const location = { lat: 42.345573, lng: -71.098326 }; // Fenway Park
-
-      new google.maps.StreetViewPanorama(
-        document.getElementById("pano") as HTMLElement,
-        {
-          position: location,
-          pov: { heading: 34, pitch: 10 },
-          zoom: 1,
-        }
-      );
-    };
-  }, []);
-
-  return <div id="pano" className="h-screen w-full" />;
+export default function StreetView({ lat, lng }: StreetViewProps) {
+  return (
+    <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
+      {/* Map required for context, minimized in DOM */}
+      <Map style={{ width: 1, height: 1, position: "absolute", left: -1000 }} defaultCenter={{ lat, lng }} defaultZoom={14} />
+      <StreetViewInner lat={lat} lng={lng} />
+    </APIProvider>
+  );
 }
