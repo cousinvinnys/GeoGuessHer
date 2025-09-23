@@ -10,7 +10,6 @@ type MiniMapProps = {
 export default function MiniMap({ guess, setGuess }: MiniMapProps) {
   return (
     <div className="absolute bottom-4 right-4 w-64 h-48 border-2 border-white rounded-lg shadow-lg z-50">
-      {/* Map fills the container */}
       <Map
         defaultZoom={2}
         defaultCenter={{ lat: 20, lng: 0 }}
@@ -27,7 +26,6 @@ export default function MiniMap({ guess, setGuess }: MiniMapProps) {
         {guess && <Marker position={guess} />}
       </Map>
 
-      {/* Reset button overlay */}
       {guess && (
         <button
           onClick={() => setGuess(null)}
