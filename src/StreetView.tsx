@@ -1,4 +1,4 @@
-import { APIProvider, Map, useMap } from "@vis.gl/react-google-maps";
+import { Map, useMap } from "@vis.gl/react-google-maps";
 import { useEffect, useRef, useState } from "react";
 
 type StreetViewProps = {
@@ -33,10 +33,13 @@ function StreetViewInner({ lat, lng }: StreetViewProps) {
 
 export default function StreetView({ lat, lng }: StreetViewProps) {
   return (
-    <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-      {/* Map required for context, minimized in DOM */}
-      <Map style={{ width: 1, height: 1, position: "absolute", left: -1000 }} defaultCenter={{ lat, lng }} defaultZoom={14} />
+    <>
+      <Map
+        style={{ width: 1, height: 1, position: "absolute", left: -1000 }}
+        defaultCenter={{ lat, lng }}
+        defaultZoom={14}
+      />
       <StreetViewInner lat={lat} lng={lng} />
-    </APIProvider>
+    </>
   );
 }
