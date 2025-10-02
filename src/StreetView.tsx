@@ -1,8 +1,8 @@
 import { useMap } from "@vis.gl/react-google-maps";
 import { useEffect, useRef, useState } from "react";
-import type { MapCoordinates } from "./App";
+import type { Coordinates } from "./App";
 
-export default function StreetView({ lat, lng }: MapCoordinates) {
+export default function StreetView({ lat, lng }: Coordinates) {
   const map = useMap();
   const panoRef = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);

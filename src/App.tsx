@@ -4,22 +4,22 @@ import MiniMap from "./MiniMap";
 import { useDistanceCalculation } from "./useDistanceCalculation";
 import SubmitButton from "./SubmitButton";
 
-export type MapCoordinates = {
+export type Coordinates = {
   lat: number;
   lng: number;
 };
 
 export default function App() {
-  const [guess, setGuess] = useState<MapCoordinates | null>(null);
+  const [guess, setGuess] = useState<Coordinates | null>(null);
 
-  const location: MapCoordinates = { lat: 42.345573, lng: -71.098326 };
+  const location: Coordinates = { lat: 42.345573, lng: -71.098326 };
 
-  const { getDistance } = useDistanceCalculation();
+  const { calculateDistance } = useDistanceCalculation();
 
   const handleSubmit = () => {
     if (!guess) return;
 
-    const distance = getDistance(location, guess);
+    const distance = calculateDistance(location, guess);
 
     alert(`Your guess is ${distance.toFixed(2)} km from the location!`);
   };

@@ -1,8 +1,8 @@
-import type { MapCoordinates } from "./App";
+import type { Coordinates } from "./App";
 
 type SubmitButtonProps = {
   handleSubmit: () => void;
-  guess: MapCoordinates | null;
+  guess: Coordinates | null;
 };
 
 export default function SubmitButton({

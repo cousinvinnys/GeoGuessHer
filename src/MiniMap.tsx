@@ -1,7 +1,7 @@
 import { Map, Marker } from "@vis.gl/react-google-maps";
-import type { MapCoordinates } from "./App";
+import type { Coordinates } from "./App";
 
-type Guess = MapCoordinates | null;
+type Guess = Coordinates | null;
 
 type MiniMapProps = {
   guess: Guess;
