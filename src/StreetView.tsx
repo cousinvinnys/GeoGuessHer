@@ -1,12 +1,8 @@
-import { Map, useMap } from "@vis.gl/react-google-maps";
+import { useMap } from "@vis.gl/react-google-maps";
 import { useEffect, useRef, useState } from "react";
+import type { MapCoordinates } from "./App";
 
-type StreetViewProps = {
-  lat: number;
-  lng: number;
-};
-
-function StreetViewInner({ lat, lng }: StreetViewProps) {
+export default function StreetView({ lat, lng }: MapCoordinates) {
   const map = useMap();
   const panoRef = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
@@ -29,17 +25,4 @@ function StreetViewInner({ lat, lng }: StreetViewProps) {
   }, [map, lat, lng, loaded]);
 
   return <div ref={panoRef} className="h-screen w-full" />;
-}
-
-export default function StreetView({ lat, lng }: StreetViewProps) {
-  return (
-    <>
-      <Map
-        style={{ width: 1, height: 1, position: "absolute", left: -1000 }}
-        defaultCenter={{ lat, lng }}
-        defaultZoom={14}
-      />
-      <StreetViewInner lat={lat} lng={lng} />
-    </>
-  );
 }

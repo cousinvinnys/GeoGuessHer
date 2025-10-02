@@ -4,10 +4,10 @@ import MiniMap from "./MiniMap";
 import { useDistanceCalculation } from "./useDistanceCalculation";
 import SubmitButton from "./SubmitButton";
 
-export interface MapCoordinates {
+export type MapCoordinates = {
   lat: number;
   lng: number;
-}
+};
 
 export default function App() {
   const [guess, setGuess] = useState<MapCoordinates | null>(null);
