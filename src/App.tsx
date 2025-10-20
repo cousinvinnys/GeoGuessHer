@@ -4,6 +4,7 @@ import MiniMap from "./MiniMap";
 import { useDistanceCalculation } from "./useDistanceCalculation";
 import SubmitButton from "./SubmitButton";
 import WelcomeScreen from "./WelcomeScreen";
+import { useLocationManager } from "./useLocationManager";
 
 export type Coordinates = {
   lat: number;
@@ -15,9 +16,8 @@ export default function App() {
 
   const [hasStarted, setStarted] = useState<boolean>(false);
 
-  const location: Coordinates = { lat: 42.345573, lng: -71.098326 };
-
   const { calculateDistance } = useDistanceCalculation();
+  const { location, nextLocation } = useLocationManager();
 
   const handleSubmit = () => {
     if (!guess) return;
@@ -25,6 +25,9 @@ export default function App() {
     const distance = calculateDistance(location, guess);
 
     alert(`Your guess is ${distance.toFixed(2)} km from the location!`);
+
+    nextLocation();
+    setGuess(null);
   };
 
   const clickBegin = () => {
