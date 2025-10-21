@@ -5,6 +5,7 @@ import { useDistanceCalculation } from "./useDistanceCalculation";
 import SubmitButton from "./SubmitButton";
 import WelcomeScreen from "./WelcomeScreen";
 import { useLocationManager } from "./useLocationManager";
+import ResultScreen from "./ResultScreen";
 
 export type Coordinates = {
   lat: number;
@@ -18,16 +19,20 @@ export default function App() {
 
   const { calculateDistance } = useDistanceCalculation();
   const { location, nextLocation } = useLocationManager();
+  const [showResult, setShowResult] = useState<boolean>(false);
+  const [distance, setDistance] = useState<number>(0);
 
   const handleSubmit = () => {
     if (!guess) return;
-
     const distance = calculateDistance(location, guess);
+    setDistance(distance);
+    setShowResult(true);
+  };
 
-    alert(`Your guess is ${distance.toFixed(2)} km from the location!`);
-
-    nextLocation();
+  const handleNextRound = () => {
     setGuess(null);
+    setShowResult(false);
+    nextLocation();
   };
 
   const clickBegin = () => {
@@ -45,6 +50,13 @@ export default function App() {
             handleSubmit={handleSubmit}
             guess={guess}
           ></SubmitButton>
+          {showResult && (
+            <ResultScreen
+              distance={distance}
+              photoUrl={location.photoUrl}
+              onNextRound={handleNextRound}
+            />
+          )}
         </>
       )}
     </div>

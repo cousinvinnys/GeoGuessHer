@@ -1,10 +1,9 @@
 import { useState } from "react";
-import type { Coordinates } from "./App";
 
-const LOCATIONS: Coordinates[] = [
-  { lat: 42.345573, lng: -71.098326 }, // boston
-  { lat: 48.858443, lng: 2.294545 }, // paris
-  { lat: 40.689245, lng: -74.044542 }, // new york
+const LOCATIONS = [
+  { lat: 39.7662091, lng: -84.2030796, photoUrl: "/photos/round3.png" },
+  { lat: 35.7086348, lng: -83.5589825, photoUrl: "/photos/round2.png" },
+  { lat: 45.4379125, lng: 12.3352915, photoUrl: "/photos/round1.png" },
 ];
 
 export function useLocationManager() {
