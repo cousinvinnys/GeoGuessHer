@@ -17,6 +17,11 @@ export default function StreetView({ lat, lng }: Coordinates) {
           position: { lat, lng },
           pov: { heading: 34, pitch: 10 },
           zoom: 1,
+          addressControl: false,
+          linksControl: false,
+          panControl: false,
+          zoomControl: false,
+          enableCloseButton: false,
         }
       );
 
