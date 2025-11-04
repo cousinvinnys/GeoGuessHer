@@ -53,6 +53,15 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
             {import.meta.env.VITE_APP_DESCRIPTION}
           </motion.p>
 
+          <motion.p
+            className="mt-8 text-lg md:text-2xl text-center max-w-2xl leading-relaxed text-gray-200"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.8 }}
+          >
+            {import.meta.env.VITE_APP_DESCRIPTION_2}
+          </motion.p>
+
           <motion.button
             onClick={toggleStart}
             className="absolute bottom-12 px-10 py-4 bg-emerald-400 hover:bg-emerald-500 text-black font-bold text-xl rounded-2xl shadow-lg transition-transform hover:scale-105"
