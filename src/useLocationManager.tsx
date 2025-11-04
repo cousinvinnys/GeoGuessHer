@@ -5,7 +5,7 @@ const LOCATIONS = [
   { lat: 35.7086348, lng: -83.5589825, photoUrl: "/photos/round2.png" },
   { lat: 39.7662091, lng: -84.2030796, photoUrl: "/photos/round3.png" },
   { lat: 39.7448632, lng: -84.4766351, photoUrl: "/photos/round4.png" },
-  { lat: 39.1576294, lng: -84.5401594, photoUrl: "/photos/round5.png" },
+  { lat: 31.9917196, lng: -80.8470636, photoUrl: "/photos/round5.png" },
   { lat: 39.7572098, lng: -84.181442, photoUrl: "/photos/round6.png" },
   { lat: 41.4844853, lng: -81.7036412, photoUrl: "/photos/round7.png" },
   { lat: 39.7583818, lng: -84.1934249, photoUrl: "/photos/round8.png" },
