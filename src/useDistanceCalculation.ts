@@ -15,7 +15,7 @@ export const useDistanceCalculation = () => {
         Math.cos(toRad(location.lat)) *
         Math.sin(dLng / 2) ** 2;
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c;
+    return R * c * 0.621371; // convert to miles
   };
 
   return { calculateDistance };

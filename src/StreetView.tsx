@@ -22,6 +22,7 @@ export default function StreetView({ lat, lng }: Coordinates) {
           panControl: false,
           zoomControl: false,
           enableCloseButton: false,
+          showRoadLabels: false,
         }
       );
 
